@@ -21,8 +21,6 @@
  * Rules state no instance variables in the class; can I use final int RUNS_UP
  *  or "final String INPUT_FILE = "p01-in.txt" etc
  */
-package p01;
-
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -32,8 +30,7 @@ import java.util.Scanner;
 public class Main {
 
     /**
-     * TODO: Edit method headers TODO: Consider suppresswarnings unused
-     * assignment in run
+     * TODO: Consider suppresswarnings unused assignment in run
      */
     final String INPUT_FILE = "p01-in.txt";
     final String OUTPUT_FILE = "p01-runs.txt";
