@@ -20,6 +20,12 @@
  * Questions to ask:
  * Rules state no instance variables in the class; can I use final int RUNS_UP
  *  or "final String INPUT_FILE = "p01-in.txt" etc
+ *
+ * TODO: Consider suppresswarnings unused assignment in run
+ * TODO: Ensure PrintWriter / Scanner objects are closed
+ *
+ *
+
  */
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
