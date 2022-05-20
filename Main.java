@@ -15,17 +15,12 @@
  * CSE205 Object Oriented Programming and Data Structures, Summer 2022 C-Session
  * Project Number: p-01
  *
+ * Group 4
  * AUTHOR: David-McConnell, dmcconn7, dmcconn7@asu.edu
- *
- * Questions to ask:
- * Rules state no instance variables in the class; can I use final int RUNS_UP
- *  or "final String INPUT_FILE = "p01-in.txt" etc
- *
- * TODO: Consider suppresswarnings unused assignment in run
- * TODO: Ensure PrintWriter / Scanner objects are closed
- *
- *
-
+ * AUTHOR: Lia Moua, amoua, amoua@asu.edu
+ * AUTHOR: Arsal Akhtar, akakhta2, akakhta2@asu.edu
+ * AUTHOR: Kari McBride, TODO, TODO 
+ * 
  */
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
@@ -34,14 +29,10 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
-
-    /**
-     * TODO: Consider suppresswarnings unused assignment in run
-     */
-    final String INPUT_FILE = "p01-in.txt";
-    final String OUTPUT_FILE = "p01-runs.txt";
-    final int RUNS_UP = 1;
-    final int RUNS_DN = 2;
+    static final String INPUT_FILE = "p01-in.txt";
+    static final String OUTPUT_FILE = "p01-runs.txt";
+    static final int RUNS_UP = 1;
+    static final int RUNS_DN = 2;
 
     public static void main(String[] args) {
         /**
@@ -54,7 +45,6 @@ public class Main {
         /**
          * This method implements the code to be ran in main
          */
-        @SuppressWarnings("UnusedAssignment")   // try block causes
         ArrayList<Integer> list = new ArrayList<>();
         try {
             list = readInputFile(INPUT_FILE);   // populate list with integers
