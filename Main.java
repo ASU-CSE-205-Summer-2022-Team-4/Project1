@@ -30,10 +30,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
-    static final String INPUT_FILE = "p01-in.txt";  // input filename
-    static final String OUTPUT_FILE = "p01-runs.txt"; // output filename
-    static final int RUNS_UP = 1;   // ensure RUNS_UP and RUNS_DN are different. Modal signifier later.
-    static final int RUNS_DN = 2;   // ensure RUNS_UP and RUNS_DN are different. Modal signifier later.
+    
 
     public static void main(String[] args) {
         /**
@@ -46,30 +43,35 @@ public class Main {
         /**
          * This method implements main logic
          */
+        String INPUT_FILE = "p01-in.txt"; // input filename
+        String OUTPUT_FILE = "p01-runs.txt"; // output filename
         ArrayList<Integer> list = new ArrayList<>();
-        list = readInputFile(INPUT_FILE);   // populate list with integers
-        ArrayList<Integer> listRunsUpCount = findRuns(list, RUNS_UP); // populate with # of upward runs
-        ArrayList<Integer> listRunsDnCount = findRuns(list, RUNS_DN); // populate with # of downward runs
+        list = readInputFile(INPUT_FILE); // populate list with integers
+        ArrayList<Integer> listRunsUpCount = findRuns(list, "up"); // populate with # of upward runs
+        ArrayList<Integer> listRunsDnCount = findRuns(list, "down"); // populate with # of downward runs
         ArrayList<Integer> listRunsCount = mergeLists(listRunsUpCount, listRunsDnCount); // merge to find total runs
         writeOutputFile(OUTPUT_FILE, listRunsCount); // write data to output file
     } // end run method
 
-    private ArrayList<Integer> findRuns(ArrayList<Integer> pList, int pDir) {
+    private ArrayList<Integer> findRuns(ArrayList<Integer> pList, String pDir) {
         /**
          * Find runs in the given array list
          *
          * @param pList ArrayList of integers
-         * @param pDir  Modal signifier; indicates whether finding upward or downward runs
+         * @param pDir  String modal signifier; finds runs upwards or downwards
+         * 
          * @return listRunsCount ArrayList of Integers indicating number of runs
          */
         ArrayList<Integer> listRunsCount = arrayListCreate(pList.size(), 0);
         int i = 0; // track iterations through pList
         int k = 0; // run counter
         while (i < pList.size() - 1) {
-            if (pDir == RUNS_UP && pList.get(i) <= pList.get(i + 1)) { // Find only increasing values if direction is upward
+            if (pDir == "up" && pList.get(i) <= pList.get(i + 1)) { // Find only increasing values if direction is
+                                                                       // upward
                 k++;
             } // end if
-            else if (pDir == RUNS_DN && pList.get(i) >= pList.get(i + 1)) { // Find only decreasing values if direction is downward
+            else if (pDir == "down" && pList.get(i) >= pList.get(i + 1)) { // Find only decreasing values if direction
+                                                                            // is downward
                 k++;
             } // end if
             else { // record runs
@@ -125,7 +127,7 @@ public class Main {
          * @param pFilename File name to be written
          * @param pListRuns ArrayList<Integer> of runs to be written to file
          */
-        try (PrintWriter out = new PrintWriter(pFilename)) {    // automatically closes resource in event of exception
+        try (PrintWriter out = new PrintWriter(pFilename)) { // automatically closes resource in event of exception
             int runsTotal = getArrayListSum(pListRuns); // Fetch sum of runs in ArrayList
             out.println("runs_total: " + runsTotal); // Write sum
             for (int k = 1; k < pListRuns.size(); k++) {
@@ -135,8 +137,8 @@ public class Main {
         catch (FileNotFoundException exception) {
             System.out.println("Oops, could not open 'p01-runs.txt' for writing. The program is ending.");
             System.exit(-200); // error code specified in project requirements
-            } // end catching FileNotFoundException for output file
-        } // end writeOutputFile method
+        } // end catching FileNotFoundException for output file
+    } // end writeOutputFile method
 
     private ArrayList<Integer> readInputFile(String pFilename) {
         /**
@@ -148,17 +150,17 @@ public class Main {
          */
         File inputFile = new File(pFilename);
         ArrayList<Integer> list = new ArrayList<>();
-        try (Scanner in = new Scanner(inputFile)) {     // automatically closes resource in event of exception
+        try (Scanner in = new Scanner(inputFile)) { // automatically closes resource in event of exception
             while (in.hasNextInt()) {
                 list.add(in.nextInt());
-                } // end while
-            } // end try 
+            } // end while
+        } // end try
         catch (FileNotFoundException exception) {
             System.out.println("Oops, could not open 'p01-in.txt' for reading. The program is ending.");
             System.exit(-100); // error code specified in project requirements
-            } // end catching FileNotFoundException for input file
+        } // end catching FileNotFoundException for input file
         return list;
-        } // end readInputFile method
+    } // end readInputFile method
 
     private Integer getArrayListSum(ArrayList<Integer> list) {
         /**
